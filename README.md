@@ -1,4 +1,4 @@
-# Komikin
+# Komikku ID
 
 Platform baca komik gratis tanpa iklan dengan jadwal rilis harian terupdate. Dibangun dengan React, Vite, Tailwind CSS, dan Express, serta siap dipakai sebagai PWA (Progressive Web App).
 
