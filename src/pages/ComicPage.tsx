@@ -20,6 +20,9 @@ export default function ComicPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Scroll to top when component mounts
+    window.scrollTo(0, 0);
+    
     if (url) {
       getDetail(url).then((res) => {
         setDetail(res);
@@ -175,4 +178,4 @@ export default function ComicPage() {
       </div>
     </motion.div>
   );
-}
+              }
