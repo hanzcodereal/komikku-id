@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { getDetail } from "../lib/api";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
 import { ChevronLeft, Play, Loader2 } from "lucide-react";
 import { motion } from "motion/react";
 
 export default function ComicPage() {
   const { slug } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
 
   let url = "";
   if (slug) {
@@ -32,6 +33,12 @@ export default function ComicPage() {
       setLoading(false);
     }
   }, [url]);
+
+  const handleBack = () => {
+    // Get the referrer from location state or use -1 as fallback
+    const from = location.state?.from || -1;
+    navigate(from);
+  };
 
   if (!url)
     return <div className="p-4 text-white">URL komik tidak ditemukan</div>;
@@ -72,7 +79,7 @@ export default function ComicPage() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/60 to-transparent flex flex-col justify-end p-4 pb-6">
           <button
-            onClick={() => navigate("/")}
+            onClick={handleBack}
             className="absolute top-4 left-4 w-10 h-10 bg-black/40 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-black/60 transition active:scale-90"
           >
             <ChevronLeft size={24} />
@@ -178,4 +185,4 @@ export default function ComicPage() {
       </div>
     </motion.div>
   );
-              }
+                }
