@@ -103,10 +103,7 @@ export default function HomePage() {
       className="p-4 space-y-8 pb-8"
     >
       <header className="sticky top-0 z-50 pt-4 pb-3 bg-neutral-950/90 backdrop-blur-md -mx-4 px-4 mb-2 border-b border-neutral-900/50 flex items-center justify-between">
-        <h1 className="text-2xl font-black tracking-tight text-white flex items-center gap-2">
-          <span className="bg-yellow-400 text-neutral-900 px-2 py-1 rounded-lg leading-none text-xl">
-            K
-          </span>
+        <h1 className="text-2xl font-black tracking-tight text-white">
           Komikku ID
         </h1>
 
@@ -250,4 +247,4 @@ export default function HomePage() {
       />
     </motion.div>
   );
-}
+            }
