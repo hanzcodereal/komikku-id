@@ -1,8 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'motion/react';
 
 export default function ComicCard({ comic, variant = 'default' }: { key?: React.Key, comic: any, variant?: 'default' | 'featured' }) {
+  const location = useLocation();
   const imageUrl = comic.image ? comic.image : 'https://picsum.photos/400/600';
   
   let slug = 'comic';
@@ -27,7 +28,7 @@ export default function ComicCard({ comic, variant = 'default' }: { key?: React.
         transition={{ type: "spring", stiffness: 220, damping: 30, mass: 0.7 }}
         className="shrink-0 w-64 snap-start"
       >
-        <Link to={detailUrl} className="block group relative rounded-xl overflow-hidden aspect-[4/5] bg-neutral-900 border border-neutral-800/50 shadow-lg">
+        <Link to={detailUrl} state={{ from: location.pathname + location.search }} className="block group relative rounded-xl overflow-hidden aspect-[4/5] bg-neutral-900 border border-neutral-800/50 shadow-lg">
            <img src={imageUrl} alt={comic.title} className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105" />
            <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent flex flex-col justify-end p-4">
               <span className="text-xs font-semibold text-yellow-400 mb-1">{comic.genre}</span>
@@ -46,7 +47,7 @@ export default function ComicCard({ comic, variant = 'default' }: { key?: React.
       transition={{ type: "spring", stiffness: 260, damping: 30, mass: 0.7 }}
       className="block"
     >
-      <Link to={detailUrl} className="block group">
+      <Link to={detailUrl} state={{ from: location.pathname + location.search }} className="block group">
         <div className="relative rounded-xl overflow-hidden aspect-[3/4] bg-neutral-900 mb-2 border border-neutral-800/30 shadow-md">
            <img src={imageUrl} alt={comic.title} className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105" />
            <div className="absolute top-2 left-2 bg-black/60 backdrop-blur-md px-2 py-0.5 rounded-lg text-[10px] font-medium text-white border border-neutral-800/30">
@@ -58,4 +59,4 @@ export default function ComicCard({ comic, variant = 'default' }: { key?: React.
       </Link>
     </motion.div>
   )
-}
+        }
