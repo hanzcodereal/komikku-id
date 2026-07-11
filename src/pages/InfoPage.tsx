@@ -16,6 +16,9 @@ export default function InfoPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
+    // Scroll to top when component mounts
+    window.scrollTo(0, 0);
+
     // Check if running on iOS
     const userAgent = window.navigator.userAgent.toLowerCase();
     const isAppleMobile = /iphone|ipad|ipod/.test(userAgent);
@@ -111,7 +114,7 @@ export default function InfoPage() {
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.1 }}
-        className="overflow-hidden bg-rose-950/20 border border-rose-900/30 rounded-2xl p-5 relative"
+        className="bg-neutral-900 border border-neutral-800/80 rounded-2xl p-5 relative"
       >
         <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-rose-500/10 rounded-full blur-2xl" />
         <div className="flex items-start gap-4">
@@ -131,7 +134,7 @@ export default function InfoPage() {
             </p>
           </div>
         </div>
-        <div className="mt-4 pt-3 border-t border-rose-950/50 flex">
+        <div className="mt-4 pt-3 border-t border-neutral-800/60 flex">
           <a
             href="https://saweria.co/hanzreally"
             target="_blank"
@@ -202,4 +205,4 @@ export default function InfoPage() {
       />
     </motion.div>
   );
-        }
+          }
