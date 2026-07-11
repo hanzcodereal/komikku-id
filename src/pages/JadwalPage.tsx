@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { getJadwal } from "../lib/api";
 import ComicCard from "../components/ComicCard";
 import { useParams, useNavigate } from "react-router-dom";
@@ -9,9 +9,13 @@ import { motion } from "motion/react";
 export default function JadwalPage() {
   const { hari } = useParams();
   const navigate = useNavigate();
-  const currentHari = hari || "rabu";
+  const currentHari = hari || "senin";
   const [data, setData] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const buttonRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
+
+  const days = ["senin", "selasa", "rabu", "kamis", "jumat", "sabtu", "minggu"];
 
   useEffect(() => {
     setLoading(true);
@@ -21,7 +25,23 @@ export default function JadwalPage() {
     });
   }, [currentHari]);
 
-  const days = ["senin", "selasa", "rabu", "kamis", "jumat", "sabtu", "minggu"];
+  // Scroll to keep the selected day in view
+  useEffect(() => {
+    if (buttonRefs.current[currentHari]) {
+      const button = buttonRefs.current[currentHari];
+      const container = scrollContainerRef.current;
+      if (button && container) {
+        const buttonLeft = button.offsetLeft;
+        const containerWidth = container.clientWidth;
+        const buttonWidth = button.clientWidth;
+        // Scroll to center the button
+        container.scrollTo({
+          left: buttonLeft - containerWidth / 2 + buttonWidth / 2,
+          behavior: "smooth",
+        });
+      }
+    }
+  }, [currentHari]);
 
   return (
     <motion.div
@@ -35,10 +55,14 @@ export default function JadwalPage() {
           Jadwal Harian
         </h1>
 
-        <div className="flex overflow-x-auto gap-2 pb-2 hide-scrollbar -mx-4 px-4">
+        <div 
+          ref={scrollContainerRef}
+          className="flex overflow-x-auto gap-2 pb-2 hide-scrollbar -mx-4 px-4"
+        >
           {days.map((day) => (
             <button
               key={day}
+              ref={(el) => (buttonRefs.current[day] = el)}
               onClick={() => navigate(`/jadwal/${day}`)}
               className={twMerge(
                 "px-4 py-2 rounded-full text-sm font-medium capitalize shrink-0 transition-colors",
@@ -95,4 +119,4 @@ export default function JadwalPage() {
       </section>
     </motion.div>
   );
-}
+            }
