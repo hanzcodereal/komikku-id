@@ -1,12 +1,9 @@
 import { useState, useEffect } from "react";
 import {
   Info,
-  Share2,
-  MessageSquare,
   Download,
   CheckCircle2,
   ChevronRight,
-  AlertCircle,
   Heart,
 } from "lucide-react";
 import { motion } from "motion/react";
@@ -66,8 +63,7 @@ export default function InfoPage() {
     >
       {/* Header */}
       <header className="sticky top-0 z-50 pt-4 pb-3 bg-neutral-950/90 backdrop-blur-md -mx-4 px-4 mb-2 border-b border-neutral-900/50">
-        <h1 className="text-2xl font-black tracking-tight text-white flex items-center gap-2">
-          <Info size={24} className="text-yellow-400" />
+        <h1 className="text-2xl font-black tracking-tight text-white">
           Tentang Aplikasi
         </h1>
       </header>
@@ -125,7 +121,7 @@ export default function InfoPage() {
           <div className="space-y-1">
             <h3 className="text-base font-bold text-white flex items-center gap-1.5">
               Dukung Kami
-              <span className="bg-rose-500/15 text-rose-400 text-[10px] font-bold px-2 py-0.5 rounded-full">
+              <span className="bg-rose-500/15 text-rose-400 text-[10px] font-bold px-2 py-0.5 rounded-full border border-rose-500/30">
                 Support
               </span>
             </h3>
@@ -142,7 +138,7 @@ export default function InfoPage() {
             rel="noopener noreferrer"
             className="w-full bg-rose-600 hover:bg-rose-500 active:bg-rose-700 text-white font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-rose-950/50 transition-colors"
           >
-            <Heart size={16} fill="currentColor" /> Dukung Sekarang <ChevronRight size={16} />
+            <Heart size={16} fill="currentColor" /> Dukung Sekarang
           </a>
         </div>
       </motion.div>
@@ -159,8 +155,11 @@ export default function InfoPage() {
             <Download size={24} />
           </div>
           <div className="space-y-1">
-            <h3 className="text-base font-bold text-white">
-              Instal Aplikasi (PWA)
+            <h3 className="text-base font-bold text-white flex items-center gap-1.5">
+              Instal Aplikasi
+              <span className="bg-yellow-400/10 text-yellow-400 text-[10px] font-bold px-2 py-0.5 rounded-full border border-yellow-400/30">
+                PWA
+              </span>
             </h3>
             <p className="text-xs text-neutral-400 leading-relaxed">
               Dapatkan akses instan langsung dari layar utama perangkat Anda,
@@ -203,4 +202,4 @@ export default function InfoPage() {
       />
     </motion.div>
   );
-}
+        }
